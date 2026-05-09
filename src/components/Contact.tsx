@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Send } from "lucide-react";
 
 export const Contact = () => {
@@ -6,11 +5,7 @@ export const Contact = () => {
     <section id="contact" className="section-padding bg-white">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
+          <div>
             <span className="text-brand-gold font-bold uppercase tracking-widest text-xs mb-4 block">Contact Us</span>
             <h2 className="text-4xl md:text-5xl font-bold text-brand-navy mb-8">
               Let's Work Together
@@ -41,14 +36,9 @@ export const Contact = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-slate-50 p-8 md:p-12 rounded-2xl border border-slate-100 shadow-sm"
-          >
+          <div className="bg-slate-50 p-8 md:p-12 rounded-2xl border border-slate-100 shadow-sm">
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid md:grid-cols-2 gap-6">
                 <input type="text" placeholder="Your Name" className="w-full bg-white border border-slate-200 p-4 rounded-lg outline-none focus:border-brand-gold transition-colors" />
@@ -66,7 +56,7 @@ export const Contact = () => {
                 Send Message <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

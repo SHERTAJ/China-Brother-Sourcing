@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { ChevronRight } from "lucide-react";
 
 export const About = () => {
@@ -7,12 +6,7 @@ export const About = () => {
       <div className="container-custom">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-24 items-start">
           
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-5"
-          >
+          <div className="lg:col-span-5">
             <div className="flex items-center gap-4 mb-10">
               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-gold">
                 The Philosophy
@@ -45,14 +39,9 @@ export const About = () => {
                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Order Volume Managed</p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-7 flex flex-col gap-6"
-          >
+          <div className="lg:col-span-7 flex flex-col gap-6">
             <div className="grid grid-cols-12 gap-6 items-end">
               <div className="col-span-12 md:col-span-7 aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                 <img 
@@ -88,7 +77,7 @@ export const About = () => {
                 <div className="absolute inset-0 bg-brand-gold/10 group-hover:bg-transparent transition-colors" />
               </div>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>

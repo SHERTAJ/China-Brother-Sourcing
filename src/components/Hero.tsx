@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { ChevronRight } from "lucide-react";
 import { TRUST_BADGES } from "../constants";
 
@@ -15,11 +14,7 @@ export const Hero = () => {
 
       <div className="container-custom relative z-10 pt-20 lg:pt-0">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <div>
             <div className="flex items-center gap-3 mb-6">
               <span className="w-12 h-[2px] bg-brand-gold" />
               <span className="text-brand-gold font-black uppercase tracking-[0.3em] text-[10px]">
@@ -71,14 +66,9 @@ export const Hero = () => {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="relative"
-          >
+          <div className="relative">
             <div className="relative aspect-[4/5] lg:aspect-[1/1] rounded-2xl overflow-hidden shadow-2xl">
               <img 
                 src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2600&auto=format&fit=crop" 
@@ -98,7 +88,7 @@ export const Hero = () => {
                 <p className="text-[10px] text-brand-navy/60 uppercase font-black tracking-widest">Years Expertise</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

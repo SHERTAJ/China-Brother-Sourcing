@@ -1,10 +1,9 @@
-import { motion } from "motion/react";
 import { BENEFITS } from "../constants";
 
 export const WhyChooseUs = () => {
   return (
     <section id="why" className="section-padding bg-[#0B1D33] text-white relative overflow-hidden">
-      {/* Recipe 1 Influenced visible grid lines */}
+      {/* Visual grid lines */}
       <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
         <div className="container-custom h-full grid grid-cols-4 lg:grid-cols-12 gap-0 border-x border-white/10">
           {[...Array(11)].map((_, i) => (
@@ -29,12 +28,8 @@ export const WhyChooseUs = () => {
 
             <div className="grid gap-10">
               {BENEFITS.map((item, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
                   className="group relative flex gap-6 items-start"
                 >
                   <div className="w-14 h-14 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center shrink-0 group-hover:bg-brand-gold transition-all duration-500">
@@ -44,17 +39,12 @@ export const WhyChooseUs = () => {
                     <h3 className="font-bold text-xl mb-2 group-hover:text-brand-gold transition-colors">{item.title}</h3>
                     <p className="text-white/40 text-sm leading-relaxed max-w-sm">{item.desc}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative hidden lg:block"
-          >
+          <div className="relative hidden lg:block">
             <div className="absolute -top-12 -left-12 p-8 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl z-20">
                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 mb-2">Network Status</p>
                <p className="text-brand-gold font-bold text-lg">Connected: Global</p>
@@ -66,16 +56,12 @@ export const WhyChooseUs = () => {
                  className="w-full h-full object-cover grayscale invert opacity-20" 
                  alt="World Map"
                />
-               <motion.div 
-                 animate={{ rotate: 360 }}
-                 transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                 className="absolute inset-0 border-[1px] border-dashed border-brand-gold/30 rounded-full m-10"
-               />
+               <div className="absolute inset-0 border-[1px] border-dashed border-brand-gold/30 rounded-full m-10 animate-[spin_40s_linear_infinite]" />
                <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-4 h-4 bg-brand-gold rounded-full shadow-[0_0_30px_rgba(197,160,89,1)]" />
                </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

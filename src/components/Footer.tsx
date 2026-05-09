@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Mail, Phone, Globe, ChevronUp } from "lucide-react";
 import { NAV_LINKS } from "../constants";
 
