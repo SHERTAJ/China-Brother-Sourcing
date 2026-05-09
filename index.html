@@ -13,7 +13,9 @@
                     colors: {
                         brand: {
                             gold: '#C5A059',
-                            navy: '#0B1D33',
+                            navy: '#06101E', // Darker midnight blue
+                            blue: '#0B1D33', // Strategic navy
+                            accent: '#162C4E' // Lighter dark blue for contrast
                         }
                     },
                     fontFamily: {
@@ -23,7 +25,7 @@
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         html {
             scroll-behavior: smooth;
@@ -33,7 +35,7 @@
             to { transform: rotate(360deg); }
         }
         .animate-spin-slow {
-            animation: spin-slow 40s linear infinite;
+            animation: spin-slow 60s linear infinite;
         }
         .container-custom {
             width: 100%;
@@ -44,73 +46,76 @@
             padding-right: 2rem;
         }
         .section-padding {
-            padding-top: 8rem;
-            padding-bottom: 8rem;
+            padding-top: 10rem;
+            padding-bottom: 10rem;
         }
         .nav-link {
             position: relative;
+            padding: 0.5rem 0;
         }
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -4px;
+            bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 1.5px;
             background-color: #C5A059;
-            transition: width 0.3s ease;
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .nav-link:hover::after {
             width: 100%;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(22, 44, 78, 0.5), transparent),
+                        linear-gradient(to bottom, #06101E, #0B1D33);
+        }
+        .card-blur {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
     </style>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-white text-brand-navy font-sans">
+<body class="bg-brand-navy text-white/90 font-sans">
 
     <!-- Header -->
-    <nav id="header" class="fixed top-0 w-full z-[100] transition-all duration-500 bg-transparent py-6">
+    <nav id="header" class="fixed top-0 w-full z-[100] transition-all duration-700 bg-transparent py-8">
         <div class="container-custom flex justify-between items-center">
-            <!-- Logo Section -->
-            <a href="#home" class="flex items-center gap-4 group">
-                <div class="w-12 h-12 bg-brand-gold rounded-sm flex items-center justify-center shadow-2xl transition-transform group-hover:scale-105">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center gap-4 group shrink-0">
+                <div class="w-12 h-12 bg-brand-gold rounded-sm flex items-center justify-center shadow-2xl transition-all group-hover:scale-110 group-hover:rotate-12">
                     <i data-lucide="globe" class="text-brand-navy w-7 h-7"></i>
                 </div>
                 <div class="flex flex-col">
                     <span id="logo-text" class="font-black text-2xl tracking-tighter uppercase leading-none text-white">
                         Brother <span class="text-brand-gold">China</span>
                     </span>
-                    <span id="logo-subtext" class="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">
-                        Sourcing Intel
+                    <span id="logo-subtext" class="text-[8px] font-black uppercase tracking-[0.5em] text-white/20">
+                        Operational Intel
                     </span>
                 </div>
             </a>
 
-            <!-- Navigation Links (Centered/Right) -->
-            <div class="hidden lg:flex items-center gap-16">
-                <div class="flex items-center gap-10">
-                    <a href="#home" class="nav-link text-[11px] font-black uppercase tracking-[0.2em] text-white hover:text-brand-gold transition-colors">Home</a>
-                    <a href="#about" class="nav-link text-[11px] font-black uppercase tracking-[0.2em] text-white hover:text-brand-gold transition-colors">About Us</a>
-                    <a href="#services" class="nav-link text-[11px] font-black uppercase tracking-[0.2em] text-white hover:text-brand-gold transition-colors">Services</a>
-                    <a href="#why" class="nav-link text-[11px] font-black uppercase tracking-[0.2em] text-white hover:text-brand-gold transition-colors">Why Choose Us</a>
-                </div>
-                
-                <!-- Inquire Now Button - Matches Screenshot -->
-                <a href="#contact" class="px-10 py-3.5 bg-white text-brand-navy text-[12px] font-black uppercase tracking-[0.2em] transition-all hover:bg-brand-gold hover:text-white shadow-xl">
-                    Inquire Now
-                </a>
+            <!-- Professional Centered Menu -->
+            <div class="hidden lg:flex items-center gap-12 absolute left-1/2 -translate-x-1/2">
+                <a href="#home" class="nav-link text-[10px] font-black uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors">Home Hub</a>
+                <a href="#about" class="nav-link text-[10px] font-black uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors">Ethos</a>
+                <a href="#services" class="nav-link text-[10px] font-black uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors">Strategic Services</a>
+                <a href="#why" class="nav-link text-[10px] font-black uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors">Differentiators</a>
             </div>
 
-            <!-- Mobile Toggle -->
-            <button id="menu-btn" class="lg:hidden p-2 text-white transition-all hover:text-brand-gold">
-                <i data-lucide="menu" size="28"></i>
-            </button>
+            <!-- CTA Box -->
+            <div class="flex items-center gap-8">
+                <a href="#contact" id="header-cta" class="hidden lg:block px-8 py-3.5 bg-white text-brand-navy text-[11px] font-black uppercase tracking-[0.2em] transition-all hover:bg-brand-gold hover:text-white shadow-2xl">
+                    Inquire Now
+                </a>
+                <button id="menu-btn" class="p-2 text-white/40 transition-all hover:text-brand-gold hover:scale-110">
+                    <i data-lucide="menu" size="28"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -129,68 +134,61 @@
     </div>
 
     <!-- Hero -->
-    <section id="home" class="relative min-h-[90vh] lg:h-screen flex items-center bg-[#0B1D33] overflow-hidden">
-        <div class="absolute inset-0 z-0 opacity-10">
-            <div class="h-full w-full" style="background-image: radial-gradient(#C5A059 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <section id="home" class="relative min-h-screen flex items-center bg-brand-navy overflow-hidden">
+        <div class="absolute inset-0 z-0 hero-gradient">
+            <div class="h-full w-full opacity-20" style="background-image: radial-gradient(#C5A059 1px, transparent 1px); background-size: 60px 60px;"></div>
         </div>
 
-        <div class="container-custom relative z-10 pt-20 lg:pt-0">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+        <div class="container-custom relative z-10 pt-32 lg:pt-0">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center">
                 <div>
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="w-12 h-[2px] bg-brand-gold"></span>
-                        <span class="text-brand-gold font-black uppercase tracking-[0.3em] text-[10px]">Established 2012</span>
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="w-16 h-[1.5px] bg-brand-gold/40"></span>
+                        <span class="text-brand-gold font-black uppercase tracking-[0.4em] text-[11px]">Global Network Established 2012</span>
                     </div>
                     
-                    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-white mb-8 leading-[0.95] tracking-tighter">
-                        The China <br>
-                        <span class="text-brand-gold">Sourcing</span> <br>
-                        Intelligence.
+                    <h1 class="text-6xl md:text-8xl lg:text-[6.5rem] font-bold text-white mb-10 leading-[0.9] tracking-[ -0.04em]">
+                        Your Bridge <br>
+                        <span class="text-brand-gold italic">To China.</span>
                     </h1>
                     
-                    <p class="text-lg text-white/60 mb-12 max-w-lg leading-relaxed font-medium">
-                        We specialize in bridging the gap between global demand and Chinese manufacturing excellence. Precision procurement at scale.
+                    <p class="text-xl text-white/50 mb-14 max-w-xl leading-relaxed font-medium">
+                        Strategically positioned to manage your entire procurement lifecycle. From source selection to port delivery, we provide absolute visibility into the Chinese market.
                     </p>
                     
-                    <div class="flex flex-wrap gap-6 mb-16">
-                        <a href="#contact" class="group px-8 py-4 bg-brand-gold text-brand-navy font-bold rounded-sm flex items-center gap-3 hover:bg-white transition-all duration-500 shadow-xl shadow-brand-gold/10">
-                            Start Sourcing <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                    <div class="flex flex-wrap gap-8 mb-20">
+                        <a href="#contact" class="group px-10 py-5 bg-brand-gold text-brand-navy font-black text-xs uppercase tracking-widest rounded-sm flex items-center gap-4 hover:bg-white transition-all duration-700 shadow-[0_20px_50px_rgba(197,160,89,0.2)]">
+                            Initiate Inquiry <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-2"></i>
                         </a>
-                        <div class="flex items-center gap-4">
-                            <div class="flex -space-x-4">
-                                <div class="w-10 h-10 rounded-full border-2 border-brand-navy bg-slate-700 flex items-center justify-center text-[10px] text-white font-bold"></div>
-                                <div class="w-10 h-10 rounded-full border-2 border-brand-navy bg-slate-600 flex items-center justify-center text-[10px] text-white font-bold"></div>
-                                <div class="w-10 h-10 rounded-full border-2 border-brand-navy bg-slate-500 flex items-center justify-center text-[10px] text-white font-bold">50+</div>
+                        <div class="flex items-center gap-6">
+                            <div class="flex -space-x-5">
+                                <div class="w-12 h-12 rounded-full border-4 border-brand-navy bg-brand-accent flex items-center justify-center text-[11px] text-white font-bold"></div>
+                                <div class="w-12 h-12 rounded-full border-4 border-brand-navy bg-slate-800 flex items-center justify-center text-[11px] text-white font-bold"></div>
+                                <div class="w-12 h-12 rounded-full border-4 border-brand-navy bg-brand-gold/80 flex items-center justify-center text-[11px] text-brand-navy font-black">50+</div>
                             </div>
-                            <div class="text-[10px] text-white/40 uppercase tracking-widest font-black leading-none">
-                                Clients <br> Worldwide
+                            <div class="text-[10px] text-white/30 uppercase tracking-[0.2em] font-black leading-tight">
+                                Top-Tier <br> Global Partners
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-wrap gap-8 pt-8 border-t border-white/5">
-                        <div class="flex flex-col gap-2 opacity-40">
-                             <i data-lucide="shield-check" class="text-white w-5 h-5"></i>
-                             <span class="text-[10px] font-black text-white uppercase tracking-[0.1em]">Quality Check</span>
-                        </div>
-                        <div class="flex flex-col gap-2 opacity-40">
-                             <i data-lucide="truck" class="text-white w-5 h-5"></i>
-                             <span class="text-[10px] font-black text-white uppercase tracking-[0.1em]">Global Ship</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="relative">
-                    <div class="relative aspect-[4/5] lg:aspect-[1/1] rounded-2xl overflow-hidden shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2600&auto=format&fit=crop" class="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 transition-all duration-700" alt="Sourcing">
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent opacity-60"></div>
-                        <div class="absolute top-8 left-8 p-6 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 text-white">
-                            <p class="text-brand-gold font-bold text-3xl mb-1">98%</p>
-                            <p class="text-[10px] text-white/60 uppercase font-black tracking-widest">Quality Rate</p>
+                    <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.5)]">
+                        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2600&auto=format&fit=crop" class="w-full h-full object-cover grayscale brightness-[0.4] hover:grayscale-0 hover:brightness-100 transition-all duration-1000" alt="Port Logistics">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent opacity-80"></div>
+                        
+                        <div class="absolute top-10 left-10 p-8 card-blur rounded-2xl text-white">
+                            <p class="text-brand-gold font-black text-4xl mb-2 tracking-tighter">98.4%</p>
+                            <p class="text-[10px] text-white/40 uppercase font-black tracking-[0.3em]">Quality Integrity Rate</p>
                         </div>
-                        <div class="absolute bottom-8 right-8 p-6 bg-brand-gold rounded-xl shadow-2xl text-brand-navy">
-                            <p class="font-bold text-3xl mb-1">12+</p>
-                            <p class="text-[10px] text-brand-navy/60 uppercase font-black tracking-widest">Years Expertise</p>
+                        
+                        <div class="absolute bottom-10 right-10 p-8 bg-brand-gold rounded-2xl shadow-3xl text-brand-navy group cursor-pointer hover:scale-105 transition-transform duration-500">
+                             <div class="flex items-center gap-4 mb-1">
+                                <p class="font-black text-4xl tracking-tighter">12+</p>
+                                <i data-lucide="shield" class="w-8 h-8 opacity-40"></i>
+                             </div>
+                            <p class="text-[10px] text-brand-navy/50 uppercase font-black tracking-[0.3em]">Years Market Domination</p>
                         </div>
                     </div>
                 </div>
@@ -199,53 +197,46 @@
     </section>
 
     <!-- About -->
-    <section id="about" class="section-padding bg-slate-50 overflow-hidden">
+    <section id="about" class="section-padding bg-brand-navy overflow-hidden relative">
+        <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-gold/20 to-transparent"></div>
         <div class="container-custom">
-            <div class="grid lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+            <div class="grid lg:grid-cols-12 gap-16 lg:gap-32 items-center">
                 <div class="lg:col-span-5">
-                    <div class="flex items-center gap-4 mb-10">
-                        <span class="text-[10px] font-black uppercase tracking-[0.5em] text-brand-gold">The Philosophy</span>
-                        <div class="h-[1px] flex-1 bg-brand-gold/20"></div>
+                    <div class="flex items-center gap-6 mb-12">
+                        <span class="text-[11px] font-black uppercase tracking-[0.6em] text-brand-gold">The Operational Ethos</span>
                     </div>
-                    <h2 class="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-12 tracking-tighter leading-[0.9]">
-                        Precision <br>
-                        <span class="text-slate-300 italic">Sourcing</span> <br>
-                        Redefined.
+                    <h2 class="text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-white mb-14 tracking-tighter leading-[0.9]">
+                        Elite <br>
+                        <span class="text-white/20">Market</span> <br>
+                        Execution.
                     </h2>
-                    <div class="space-y-8 text-slate-500 leading-relaxed font-medium">
-                        <p>Founded in 2012, Brother China Sourcing was built on a singular belief: that international procurement should be transparent, risk-averse, and highly efficient.</p>
-                        <p>We do not just find suppliers; we engineer supply chains. Our field operatives work directly on factory floors to ensure your specifications are met with absolute fidelity.</p>
+                    <div class="space-y-10 text-white/40 text-lg leading-relaxed font-medium">
+                        <p>We operate beyond simple sourcing. Brother China Sourcing provides a comprehensive infrastructure designed to mitigate geopolitical and manufacturing risks in real-time.</p>
+                        <p>Our on-site field operatives act as your proxy, ensuring precision engineering and the highest grade of quality integrity across every production run.</p>
                     </div>
-                    <div class="mt-16 grid grid-cols-2 gap-12 border-t border-slate-200 pt-12">
+                    <div class="mt-20 grid grid-cols-2 gap-12 pt-16 border-t border-white/5">
                         <div>
-                            <p class="text-3xl font-bold text-brand-navy mb-2">500+</p>
-                            <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Trusted Suppliers</p>
+                            <p class="text-4xl font-black text-white mb-3">500+</p>
+                            <p class="text-[10px] font-black uppercase tracking-[0.3em] text-brand-gold">Tier-1 Suppliers</p>
                         </div>
                         <div>
-                            <p class="text-3xl font-bold text-brand-navy mb-2">12M+</p>
-                            <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Order Volume managed</p>
+                            <p class="text-4xl font-black text-white mb-3">$12M+</p>
+                            <p class="text-[10px] font-black uppercase tracking-[0.3em] text-brand-gold">Assets Managed</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 flex flex-col gap-6">
-                    <div class="grid grid-cols-12 gap-6 items-end">
-                        <div class="col-span-12 md:col-span-7 aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Factory">
+                <div class="lg:col-span-7">
+                    <div class="grid grid-cols-12 gap-8 items-end">
+                        <div class="col-span-12 md:col-span-7 aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl relative group">
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000" alt="Industrial Facility">
+                            <div class="absolute inset-0 border border-white/10 rounded-3xl pointer-events-none"></div>
                         </div>
-                        <div class="col-span-12 md:col-span-5 aspect-square bg-[#0B1D33] rounded-2xl p-8 flex flex-col justify-center text-white">
-                            <i data-lucide="quote" class="text-brand-gold w-10 h-10 mb-6"></i>
-                            <p class="text-sm font-medium leading-relaxed italic opacity-80">
-                                "Sourcing excellence is not an act, but a habit of meticulous verification and unwavering integrity."
+                        <div class="col-span-12 md:col-span-5 aspect-square bg-brand-accent p-10 rounded-3xl flex flex-col justify-center border border-white/5">
+                            <i data-lucide="shield" class="text-brand-gold w-12 h-12 mb-8"></i>
+                            <p class="text-lg font-bold text-white leading-relaxed italic opacity-70">
+                                "Our mission is to provide terminal-to-terminal security for every procurement dollar spent."
                             </p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-12 gap-6">
-                        <div class="col-span-12 md:col-span-5 aspect-square rounded-2xl overflow-hidden shadow-xl border-8 border-white">
-                            <img src="https://images.unsplash.com/photo-1521791136064-7986c2923216?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="Handshake">
-                        </div>
-                        <div class="col-span-12 md:col-span-7 aspect-[16/9] rounded-2xl overflow-hidden shadow-xl relative group">
-                            <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaad5b?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Warehouse">
                         </div>
                     </div>
                 </div>
@@ -254,92 +245,309 @@
     </section>
 
     <!-- Services -->
-    <section id="services" class="section-padding bg-white relative overflow-hidden">
-        <div class="absolute inset-y-0 left-1/4 w-[1px] bg-slate-100 hidden lg:block"></div>
-        <div class="absolute inset-y-0 left-2/4 w-[1px] bg-slate-100 hidden lg:block"></div>
-        <div class="absolute inset-y-0 left-3/4 w-[1px] bg-slate-100 hidden lg:block"></div>
+    <section id="services" class="section-padding bg-brand-blue relative overflow-hidden">
+        <div class="absolute inset-y-0 left-1/4 w-[1px] bg-white/5 hidden lg:block"></div>
+        <div class="absolute inset-y-0 left-2/4 w-[1px] bg-white/5 hidden lg:block"></div>
+        <div class="absolute inset-y-0 left-3/4 w-[1px] bg-white/5 hidden lg:block"></div>
 
         <div class="container-custom relative z-10">
-            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-8">
-                <div class="max-w-2xl">
-                    <span class="text-[10px] font-black uppercase tracking-[0.5em] text-brand-gold mb-6 block">Operational Capabilities</span>
-                    <h2 class="text-4xl md:text-6xl font-bold text-brand-navy leading-tight tracking-tight">
-                        Strategic Infrastructure <br>
-                        <span class="text-slate-300">for Global Trade.</span>
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-12">
+                <div class="max-w-3xl">
+                    <span class="text-[11px] font-black uppercase tracking-[0.6em] text-brand-gold mb-8 block">Global Capabilities</span>
+                    <h2 class="text-5xl md:text-8xl font-black text-white leading-none tracking-tighter uppercase">
+                        Sourcing & <br>
+                        <span class="text-white/10">Logistics.</span>
                     </h2>
                 </div>
-                <div class="lg:pb-2 text-slate-500 max-w-sm text-sm">
-                    Our end-to-end solutions are engineered to minimize risk and maximize margin.
+                <div class="lg:pb-4 text-white/30 max-w-sm text-lg font-medium">
+                    End-to-end solutions to simplify your supply chain, from factory floor to your warehouse.
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-4 text-left">
-                <div class="md:col-span-3 lg:col-span-6 bg-[#0B1D33] text-white p-10 rounded-2xl flex flex-col justify-between group">
+            <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 mb-6">
+                <!-- Sourcing -->
+                <div class="md:col-span-3 lg:col-span-6 bg-brand-accent border border-white/5 p-12 rounded-3xl flex flex-col justify-between group hover:border-brand-gold/30 transition-all duration-500">
                     <div>
-                        <div class="w-12 h-12 bg-brand-gold rounded-lg flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
-                            <i data-lucide="package-search" class="text-brand-navy w-6 h-6"></i>
+                        <div class="w-16 h-16 bg-brand-gold rounded-xl flex items-center justify-center mb-12 shadow-2xl transition-transform group-hover:rotate-6">
+                            <i data-lucide="search" class="text-brand-navy w-8 h-8"></i>
                         </div>
-                        <h3 class="text-3xl font-bold mb-4">Product Sourcing</h3>
-                        <p class="text-white/60 leading-relaxed max-w-sm">Comprehensive directory navigation and selection of premium manufacturers across all industrial sectors.</p>
+                        <h3 class="text-4xl font-bold text-white mb-6">Product Sourcing</h3>
+                        <p class="text-white/40 text-lg leading-relaxed max-w-sm font-medium">Identify and negotiate with the most reliable manufacturers to secure competitive pricing and superior quality.</p>
+                    </div>
+                    <div class="mt-8 flex items-center gap-3 text-brand-gold text-[10px] font-black uppercase tracking-widest">
+                        <span>Factory Direct</span>
+                        <div class="h-[1px] w-12 bg-brand-gold/20"></div>
+                        <span>Best Margin</span>
                     </div>
                 </div>
-                <div class="md:col-span-3 lg:col-span-3 bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:bg-white hover:shadow-xl transition-all">
-                    <i data-lucide="clipboard-check" class="text-brand-gold w-8 h-8 mb-12"></i>
-                    <h3 class="text-xl font-bold text-brand-navy mb-4">Verification</h3>
-                    <p class="text-slate-500 text-sm">Supplier background checks and compliance audits to ensure regulatory adherence.</p>
+
+                <!-- Verification -->
+                <div class="md:col-span-3 lg:col-span-3 card-blur p-10 rounded-3xl hover:border-brand-gold/20 transition-all group">
+                    <i data-lucide="shield-check" class="text-brand-gold w-10 h-10 mb-16 transition-transform group-hover:scale-110"></i>
+                    <h3 class="text-2xl font-bold text-white mb-6">Supplier Audit</h3>
+                    <p class="text-white/30 text-sm font-medium leading-relaxed">Rigorous background checks and site visits to ensure your potential partners are legitimate and compliant.</p>
                 </div>
-                <div class="md:col-span-3 lg:col-span-3 bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:bg-white hover:shadow-xl transition-all">
-                    <i data-lucide="search" class="text-brand-gold w-8 h-8 mb-12"></i>
-                    <h3 class="text-xl font-bold text-brand-navy mb-4">QC Inspection</h3>
-                    <p class="text-slate-500 text-sm">Third-party quality inspection during and after production cycles.</p>
+
+                <!-- Inspection -->
+                <div class="md:col-span-3 lg:col-span-3 card-blur p-10 rounded-3xl hover:border-brand-gold/20 transition-all group">
+                    <i data-lucide="eye" class="text-brand-gold w-10 h-10 mb-16 transition-transform group-hover:scale-110"></i>
+                    <h3 class="text-2xl font-bold text-white mb-6">Quality Control</h3>
+                    <p class="text-white/30 text-sm font-medium leading-relaxed">Field operatives verifying every batch at the production site before the final container seal is applied.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Logistics -->
+                <div class="card-blur p-10 rounded-3xl hover:border-brand-gold/20 transition-all group">
+                    <div class="flex items-center justify-between mb-12">
+                         <i data-lucide="ship" class="text-brand-gold w-10 h-10 transition-transform group-hover:-translate-y-1"></i>
+                         <span class="text-[9px] font-black uppercase text-white/20 tracking-widest">Global Freight</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-6">Freight Forwarding</h3>
+                    <p class="text-white/30 text-sm font-medium leading-relaxed">Multimodal transportation solutions ensuring your cargo reaches its destination via the most efficient routes.</p>
+                </div>
+
+                <!-- Warehousing -->
+                <div class="card-blur p-10 rounded-3xl hover:border-brand-gold/20 transition-all group">
+                    <div class="flex items-center justify-between mb-12">
+                         <i data-lucide="warehouse" class="text-brand-gold w-10 h-10 transition-transform group-hover:-translate-y-1"></i>
+                         <span class="text-[9px] font-black uppercase text-white/20 tracking-widest">Secure Storage</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-6">Warehousing</h3>
+                    <p class="text-white/30 text-sm font-medium leading-relaxed">Strategically located hubs to manage inventory, consolidation, and distribution across major trade lanes.</p>
+                </div>
+
+                <!-- Door to Door -->
+                <div class="card-blur p-10 rounded-3xl hover:border-brand-gold/20 transition-all group">
+                    <div class="flex items-center justify-between mb-12">
+                         <i data-lucide="container" class="text-brand-gold w-10 h-10 transition-transform group-hover:-translate-y-1"></i>
+                         <span class="text-[9px] font-black uppercase text-white/20 tracking-widest">End to End</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-6">D2D Delivery</h3>
+                    <p class="text-white/30 text-sm font-medium leading-relaxed">A complete door-to-door logistics protocol that handles customs, taxes, and final mile transport.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Process -->
+    <section id="process" class="section-padding bg-brand-navy relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-white/10 rounded-full"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/10 rounded-full"></div>
+        </div>
+        
+        <div class="container-custom relative z-10">
+            <div class="text-center mb-24">
+                <span class="text-brand-gold font-black uppercase tracking-[0.6em] text-[11px] mb-6 block">The Protocol</span>
+                <h2 class="text-5xl md:text-7xl font-bold text-white tracking-tighter">Operational <span class="text-brand-gold italic">Lifecycle.</span></h2>
+                <p class="text-white/30 mt-8 max-w-xl mx-auto text-lg">A transparent, four-stage framework designed for maximum efficiency and zero-risk execution.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="relative group">
+                    <div class="mb-10 flex items-center justify-between">
+                        <div class="w-16 h-16 bg-brand-accent border border-white/5 rounded-2xl flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-navy transition-all duration-500 shadow-xl">
+                            <i data-lucide="file-text" class="w-8 h-8"></i>
+                        </div>
+                        <span class="text-5xl font-black text-white/5">01</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Submission</h3>
+                    <p class="text-white/30 text-sm font-medium leading-relaxed mb-6">Submit your project requirements and specifications through our secure terminal for immediate analysis.</p>
+                    <div class="h-1 w-0 bg-brand-gold group-hover:w-full transition-all duration-700"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative group">
+                    <div class="mb-10 flex items-center justify-between">
+                        <div class="w-16 h-16 bg-brand-accent border border-white/5 rounded-2xl flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-navy transition-all duration-500 shadow-xl">
+                            <i data-lucide="git-merge" class="w-8 h-8"></i>
+                        </div>
+                        <span class="text-5xl font-black text-white/5">02</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Negotiation</h3>
+                    <p class="text-white/30 text-sm font-medium leading-relaxed mb-6">Our field operatives scout, audit, and negotiate with top-tier manufacturers to lock in superior terms.</p>
+                    <div class="h-1 w-0 bg-brand-gold group-hover:w-full transition-all duration-700"></div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative group">
+                    <div class="mb-10 flex items-center justify-between">
+                        <div class="w-16 h-16 bg-brand-accent border border-white/5 rounded-2xl flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-navy transition-all duration-500 shadow-xl">
+                            <i data-lucide="clipboard-check" class="w-8 h-8"></i>
+                        </div>
+                        <span class="text-5xl font-black text-white/5">03</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Quality Sync</h3>
+                    <p class="text-white/30 text-sm font-medium leading-relaxed mb-6">Real-time production monitoring and multi-point QC inspections ensure your standards are met without compromise.</p>
+                    <div class="h-1 w-0 bg-brand-gold group-hover:w-full transition-all duration-700"></div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative group">
+                    <div class="mb-10 flex items-center justify-between">
+                        <div class="w-16 h-16 bg-brand-accent border border-white/5 rounded-2xl flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-navy transition-all duration-500 shadow-xl">
+                            <i data-lucide="box" class="w-8 h-8"></i>
+                        </div>
+                        <span class="text-5xl font-black text-white/5">04</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Final Delivery</h3>
+                    <p class="text-white/30 text-sm font-medium leading-relaxed mb-6">Secure shipping, customs clearance, and terminal delivery. Your vision, delivered exactly as specified.</p>
+                    <div class="h-1 w-0 bg-brand-gold group-hover:w-full transition-all duration-700"></div>
+                </div>
+            </div>
+
+            <div class="mt-24 pt-16 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-10">
+                <div class="flex items-center gap-6">
+                    <p class="text-[10px] font-black uppercase tracking-[0.4em] text-white/20">Average Turnaround</p>
+                    <p class="text-2xl font-bold text-white tracking-widest">14-21 DAYS</p>
+                </div>
+                <a href="#contact" class="px-12 py-5 bg-white text-brand-navy text-[10px] font-black uppercase tracking-widest hover:bg-brand-gold hover:text-white transition-all shadow-2xl">
+                    Get Started Now
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Why Choose Us -->
-    <section id="why" class="section-padding bg-[#0B1D33] text-white relative overflow-hidden">
+    <section id="why" class="section-padding bg-brand-navy text-white relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-5 pointer-events-none">
+            <div class="container-custom h-full grid grid-cols-12 gap-0 border-x border-white/10">
+                <div class="col-span-1 border-r border-white/10"></div>
+                <div class="col-span-1 border-r border-white/10"></div>
+                <div class="col-span-1 border-r border-white/10"></div>
+                <div class="col-span-1 border-r border-white/10"></div>
+                <div class="col-span-1 border-r border-white/10"></div>
+                <div class="col-span-1 border-r border-white/10"></div>
+                <div class="col-span-1 border-r border-white/10"></div>
+                <div class="col-span-1 border-r border-white/10"></div>
+                <div class="col-span-1 border-r border-white/10"></div>
+                <div class="col-span-1 border-r border-white/10"></div>
+                <div class="col-span-1 border-r border-white/10"></div>
+            </div>
+        </div>
+
         <div class="container-custom relative z-10">
             <div class="grid lg:grid-cols-2 gap-24 items-center">
                 <div>
                     <div class="flex items-center gap-4 mb-8">
                         <div class="w-10 h-[1px] bg-brand-gold"></div>
-                        <span class="text-[10px] font-black uppercase tracking-[0.5em] text-brand-gold">The Differentiator</span>
+                        <span class="text-[11px] font-black uppercase tracking-[0.6em] text-brand-gold">Corporate Differentiator</span>
                     </div>
-                    <h2 class="text-4xl md:text-6xl font-bold mb-12 tracking-tighter">
-                        Operational <br> Integrity <span class="text-white/20">&</span> <br> <span class="text-brand-gold">Performance.</span>
+                    <h2 class="text-5xl md:text-[5rem] font-bold mb-14 tracking-tighter leading-none">
+                        Infrastructure <br> 
+                        <span class="text-white/20">&</span> Professional <br> 
+                        <span class="text-brand-gold">Performance.</span>
                     </h2>
-                    <div class="grid gap-10">
-                        <div class="group relative flex gap-6 items-start">
-                             <div class="w-14 h-14 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center shrink-0 group-hover:bg-brand-gold transition-all duration-500">
-                                <i data-lucide="users" class="text-brand-gold w-6 h-6 group-hover:text-brand-navy"></i>
+                    <div class="grid gap-12">
+                        <div class="group relative flex gap-8 items-start">
+                             <div class="w-16 h-16 bg-brand-accent border border-white/10 rounded-sm flex items-center justify-center shrink-0 group-hover:bg-brand-gold transition-all duration-700">
+                                <i data-lucide="award" class="text-brand-gold w-7 h-7 group-hover:text-brand-navy"></i>
                              </div>
                              <div>
-                                <h3 class="font-bold text-xl mb-2">Verified Suppliers</h3>
-                                <p class="text-white/40 text-sm">Strict audit protocols for every partner.</p>
+                                <h3 class="font-bold text-2xl mb-2">Authenticated Sourcing</h3>
+                                <p class="text-white/30 text-sm leading-relaxed max-w-sm font-medium">We utilize proprietary scoring algorithms to verify factory operational integrity.</p>
                              </div>
                         </div>
-                        <div class="group relative flex gap-6 items-start">
-                             <div class="w-14 h-14 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center shrink-0 group-hover:bg-brand-gold transition-all duration-500">
-                                <i data-lucide="trending-up" class="text-brand-gold w-6 h-6 group-hover:text-brand-navy"></i>
+                        <div class="group relative flex gap-8 items-start">
+                             <div class="w-16 h-16 bg-brand-accent border border-white/10 rounded-sm flex items-center justify-center shrink-0 group-hover:bg-brand-gold transition-all duration-700">
+                                <i data-lucide="zap" class="text-brand-gold w-7 h-7 group-hover:text-brand-navy"></i>
                              </div>
                              <div>
-                                <h3 class="font-bold text-xl mb-2">Market Intel</h3>
-                                <p class="text-white/40 text-sm">Real-time data on manufacturing trends.</p>
+                                <h3 class="font-bold text-2xl mb-2">Accelerated Logistics</h3>
+                                <p class="text-white/30 text-sm leading-relaxed max-w-sm font-medium">Real-time port intelligence and custom lane development to reduce arrival lead times.</p>
                              </div>
                         </div>
                     </div>
                 </div>
                 <div class="hidden lg:block relative">
-                    <div class="absolute -top-12 -left-12 p-8 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl z-20">
-                        <p class="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">Network Status</p>
-                        <p class="text-brand-gold font-bold text-lg">Connected: Global</p>
+                    <div class="absolute -top-10 -left-10 p-10 card-blur rounded-3xl z-20">
+                        <p class="text-[10px] font-black uppercase tracking-[0.5em] text-white/40 mb-3">Core Connectivity</p>
+                        <p class="text-brand-gold font-black text-2xl">Global Network Active</p>
                     </div>
-                    <div class="relative aspect-square bg-slate-900 overflow-hidden rounded-full border border-white/10 p-20">
-                        <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover grayscale invert opacity-20" alt="Map">
-                        <div class="absolute inset-0 border-[1px] border-dashed border-brand-gold/30 rounded-full m-10 animate-spin-slow"></div>
+                    <div class="relative aspect-square bg-[#040B16] overflow-hidden rounded-full border border-white/5 p-24">
+                        <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover grayscale invert opacity-10" alt="World Topology">
+                        <div class="absolute inset-0 border-[1.5px] border-dashed border-brand-gold/10 rounded-full m-12 animate-spin-slow"></div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-4 h-4 bg-brand-gold rounded-full shadow-[0_0_30px_rgba(197,160,89,1)]"></div>
+                            <div class="w-6 h-6 bg-brand-gold rounded-full shadow-[0_0_60px_rgba(197,160,89,0.8)]"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section-padding bg-brand-blue relative overflow-hidden">
+        <div class="container-custom relative z-10">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-20 gap-10">
+                <div class="max-w-2xl">
+                    <span class="text-brand-gold font-black uppercase tracking-[0.6em] text-[11px] mb-8 block">Market Intel</span>
+                    <h2 class="text-5xl md:text-7xl font-bold text-white tracking-tighter uppercase">Stakeholder <br> <span class="text-white/10 italic">Intelligence.</span></h2>
+                </div>
+                <div class="text-white/30 text-lg font-medium max-w-sm lg:pb-4 border-l border-white/5 pl-8">
+                    Voices from the global supply chain network.
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-blur p-12 rounded-3xl relative">
+                    <i data-lucide="quote" class="text-brand-gold/10 w-20 h-20 absolute top-8 right-8"></i>
+                    <div class="flex gap-1 mb-8">
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                    </div>
+                    <p class="text-white/60 text-lg leading-relaxed mb-10 italic font-medium">"Brother China Sourcing transformed our procurement strategy. Their field inspections caught several critical defects that would have ruined our distribution cycle."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center font-black text-brand-gold text-xs">MA</div>
+                        <div>
+                            <p class="font-bold text-white uppercase text-xs tracking-widest">Marcus Ardel</p>
+                            <p class="text-[10px] text-white/20 font-black uppercase tracking-widest">CTO, TechLogistics UK</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="card-blur p-12 rounded-3xl relative">
+                    <i data-lucide="quote" class="text-brand-gold/10 w-20 h-20 absolute top-8 right-8"></i>
+                    <div class="flex gap-1 mb-8">
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                    </div>
+                    <p class="text-white/60 text-lg leading-relaxed mb-10 italic font-medium">"Absolute transparency. We receive real-time updates from the factory floor. It's like having our own eyes in China without the travel complexity."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center font-black text-brand-gold text-xs">SL</div>
+                        <div>
+                            <p class="font-bold text-white uppercase text-xs tracking-widest">Sarah Lindstorm</p>
+                            <p class="text-[10px] text-white/20 font-black uppercase tracking-widest">Operations Director, Nordic Retail</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="card-blur p-12 rounded-3xl relative">
+                    <i data-lucide="quote" class="text-brand-gold/10 w-20 h-20 absolute top-8 right-8"></i>
+                    <div class="flex gap-1 mb-8">
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-brand-gold"></i>
+                    </div>
+                    <p class="text-white/60 text-lg leading-relaxed mb-10 italic font-medium">"The logistics arm is phenomenal. Cleared customs 3 days faster than our previous provider. Highly recommended for high-volume procurement."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center font-black text-brand-gold text-xs">JK</div>
+                        <div>
+                            <p class="font-bold text-white uppercase text-xs tracking-widest">Javeed Khan</p>
+                            <p class="text-[10px] text-white/20 font-black uppercase tracking-widest">CEO, Global Imports</p>
                         </div>
                     </div>
                 </div>
@@ -348,46 +556,55 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section-padding bg-white">
-        <div class="container-custom">
-            <div class="grid lg:grid-cols-2 gap-16 items-start">
+    <section id="contact" class="section-padding bg-brand-navy relative overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-gold/10 to-transparent"></div>
+        <div class="container-custom relative z-10">
+            <div class="grid lg:grid-cols-2 gap-24 items-center">
                 <div>
-                    <span class="text-brand-gold font-bold uppercase tracking-widest text-xs mb-4 block">Contact Us</span>
-                    <h2 class="text-4xl md:text-5xl font-bold text-brand-navy mb-8">Let's Work Together</h2>
-                    <p class="text-slate-500 mb-12 max-w-md leading-relaxed">Ready to optimize your supply chain? Our team is ready to assist you with any inquiries regarding manufacturing and logistics in China.</p>
+                    <span class="text-brand-gold font-black uppercase tracking-[0.6em] text-[11px] mb-8 block">Global Hub</span>
+                    <h2 class="text-5xl md:text-7xl font-bold text-white mb-10 tracking-tighter">Connect With <br> <span class="text-brand-gold">Operations.</span></h2>
+                    <p class="text-white/40 mb-16 max-w-md text-lg font-medium leading-relaxed">Our strategists are ready to deploy. For enterprise-level inquiries or specialized manufacturing requirements, contact our hub.</p>
                     
-                    <div class="space-y-8">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-slate-50 border border-slate-100 rounded-lg flex items-center justify-center text-brand-gold font-bold italic">
-                                <i data-lucide="phone" class="w-5 h-5"></i>
+                    <div class="space-y-10">
+                        <div class="flex items-center gap-6 group">
+                            <div class="w-14 h-14 bg-brand-accent border border-white/5 rounded-xl flex items-center justify-center text-brand-gold transition-all group-hover:bg-brand-gold group-hover:text-brand-navy shadow-lg">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <p class="text-[10px] uppercase font-bold text-slate-400 mb-1">WhatsApp Hub</p>
-                                <p class="font-bold text-brand-navy">03338519369</p>
+                                <p class="text-[10px] uppercase font-black tracking-widest text-white/20 mb-1">Direct Terminal</p>
+                                <p class="text-xl font-bold text-white tracking-widest">+92 3338519369</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-slate-50 border border-slate-100 rounded-lg flex items-center justify-center text-brand-gold font-bold italic">
-                                <i data-lucide="mail" class="w-5 h-5"></i>
+                        <div class="flex items-center gap-6 group">
+                            <div class="w-14 h-14 bg-brand-accent border border-white/5 rounded-xl flex items-center justify-center text-brand-gold transition-all group-hover:bg-brand-gold group-hover:text-brand-navy shadow-lg">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <p class="text-[10px] uppercase font-bold text-slate-400 mb-1">Email Inquiry</p>
-                                <p class="font-bold text-brand-navy lowercase">info@brotherchinasourcing.com</p>
+                                <p class="text-[10px] uppercase font-black tracking-widest text-white/20 mb-1">Secure Intel</p>
+                                <p class="text-xl font-bold text-white lowercase tracking-tight">info@brotherchinasourcing.com</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-slate-50 p-8 md:p-12 rounded-2xl border border-slate-100 shadow-sm">
-                    <form class="space-y-6" onsubmit="event.preventDefault()">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <input type="text" placeholder="Your Name" class="w-full bg-white border border-slate-200 p-4 rounded-lg outline-none focus:border-brand-gold transition-colors">
-                            <input type="email" placeholder="Your Email" class="w-full bg-white border border-slate-200 p-4 rounded-lg outline-none focus:border-brand-gold transition-colors">
+                <div class="card-blur p-12 rounded-[2rem] shadow-3xl">
+                    <form class="space-y-8" onsubmit="event.preventDefault()">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-black uppercase tracking-widest text-white/20 ml-2">Identity</label>
+                                <input type="text" placeholder="Full Name" class="w-full bg-white/5 border border-white/5 p-5 rounded-xl outline-none focus:border-brand-gold text-white transition-all">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-black uppercase tracking-widest text-white/20 ml-2">Protocol</label>
+                                <input type="email" placeholder="Corporate Email" class="w-full bg-white/5 border border-white/5 p-5 rounded-xl outline-none focus:border-brand-gold text-white transition-all">
+                            </div>
                         </div>
-                        <input type="text" placeholder="Subject" class="w-full bg-white border border-slate-200 p-4 rounded-lg outline-none focus:border-brand-gold transition-colors">
-                        <textarea placeholder="Message" rows="5" class="w-full bg-white border border-slate-200 p-4 rounded-lg outline-none focus:border-brand-gold transition-colors"></textarea>
-                        <button type="submit" class="w-full bg-brand-navy text-white p-4 rounded-lg font-bold flex items-center justify-center gap-3 hover:bg-brand-gold transition-all duration-300">
-                            Send Message <i data-lucide="send" class="w-4 h-4"></i>
+                        <div class="space-y-2">
+                             <label class="text-[10px] font-black uppercase tracking-widest text-white/20 ml-2">Requirement</label>
+                             <textarea placeholder="Specify procurement objectives" rows="4" class="w-full bg-white/5 border border-white/5 p-5 rounded-xl outline-none focus:border-brand-gold text-white transition-all"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-gold text-brand-navy py-6 rounded-xl font-black text-xs uppercase tracking-[0.3em] flex items-center justify-center gap-4 hover:bg-white hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] transition-all duration-700">
+                            Transmit Inquiry <i data-lucide="send" class="w-4 h-4"></i>
                         </button>
                     </form>
                 </div>
@@ -396,53 +613,65 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-[#0B1D33] pt-32 pb-12 text-white border-t border-white/5">
-        <div class="container-custom">
-            <div class="grid lg:grid-cols-12 gap-16 mb-24">
-                <div class="lg:col-span-4">
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-10 h-10 bg-brand-gold rounded-sm flex items-center justify-center">
-                            <i data-lucide="globe" class="text-brand-navy w-6 h-6"></i>
+    <footer class="bg-brand-navy pt-40 pb-16 text-white border-t border-white/5 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-brand-accent/20 to-transparent pointer-events-none"></div>
+        <div class="container-custom relative z-10">
+            <div class="grid lg:grid-cols-12 gap-20 mb-32">
+                <div class="lg:col-span-5">
+                    <div class="flex items-center gap-5 mb-10">
+                        <div class="w-12 h-12 bg-brand-gold rounded-sm flex items-center justify-center shadow-2xl">
+                            <i data-lucide="globe" class="text-brand-navy w-7 h-7"></i>
                         </div>
                         <div class="flex flex-col">
-                            <span class="font-black text-xl uppercase tracking-tighter leading-none">Brother <span class="text-brand-gold">China</span></span>
-                            <span class="text-[9px] font-black uppercase tracking-[0.4em] text-white/20">Global Logistics Engineering</span>
+                            <span class="font-black text-2xl uppercase tracking-tighter leading-none">Brother <span class="text-brand-gold">China</span></span>
+                            <span class="text-[10px] font-black uppercase tracking-[0.5em] text-white/20">Industrial Procurement Intel</span>
                         </div>
                     </div>
-                    <p class="text-white/40 text-sm leading-relaxed max-w-sm">Strategic procurement firm specialized in high-volume manufacturing.</p>
+                    <p class="text-white/30 text-lg leading-relaxed max-w-md font-medium mb-12">
+                        Leading global enterprises trust Brother China Sourcing for strategic supply chain management and field-level quality assurance.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 bg-white/5 hover:bg-brand-gold hover:text-brand-navy transition-all duration-500 rounded-full flex items-center justify-center">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/5 hover:bg-brand-gold hover:text-brand-navy transition-all duration-500 rounded-full flex items-center justify-center">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                    </div>
                 </div>
                 <!-- Nav -->
-                <div class="lg:col-span-2 lg:col-start-6">
-                    <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 mb-8">Navigation</h4>
-                    <ul class="space-y-4 text-sm font-bold text-white/60">
-                        <li><a href="#home" class="hover:text-brand-gold">Home</a></li>
-                        <li><a href="#about" class="hover:text-brand-gold">About Us</a></li>
-                        <li><a href="#services" class="hover:text-brand-gold">Services</a></li>
-                        <li><a href="#contact" class="hover:text-brand-gold">Contact</a></li>
+                <div class="lg:col-span-2 lg:col-start-7">
+                    <h4 class="text-[11px] font-black uppercase tracking-[0.5em] text-white/20 mb-10 text-right lg:text-left">Directory</h4>
+                    <ul class="space-y-5 text-sm font-bold text-white/40 text-right lg:text-left">
+                        <li><a href="#home" class="hover:text-brand-gold transition-colors">Home Base</a></li>
+                        <li><a href="#about" class="hover:text-brand-gold transition-colors">Operational Ethos</a></li>
+                        <li><a href="#services" class="hover:text-brand-gold transition-colors">Services Grid</a></li>
+                        <li><a href="#contact" class="hover:text-brand-gold transition-colors">Contact Hub</a></li>
                     </ul>
                 </div>
                 <!-- Contacts -->
-                <div class="lg:col-span-3">
-                    <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 mb-8">Hubs</h4>
-                    <div class="space-y-6">
+                <div class="lg:col-span-3 lg:col-start-10">
+                    <h4 class="text-[11px] font-black uppercase tracking-[0.5em] text-white/20 mb-10 text-right lg:text-left">Global Terminals</h4>
+                    <div class="space-y-8 text-right lg:text-left">
                         <div>
-                            <p class="text-xs font-black uppercase tracking-widest text-white/60 mb-1">Guangzhou, CN</p>
-                            <p class="text-[10px] text-white/30">+86 13054277017</p>
+                            <p class="text-sm font-black uppercase tracking-widest text-white/70 mb-2">Guangzhou Operations</p>
+                            <p class="text-[11px] text-white/30 font-bold tracking-widest">+86 13054277017</p>
                         </div>
                         <div>
-                            <p class="text-xs font-black uppercase tracking-widest text-white/60 mb-1">Islamabad, PK</p>
-                            <p class="text-[10px] text-white/30">03338519369</p>
+                            <p class="text-sm font-black uppercase tracking-widest text-white/70 mb-2">Islamabad Headquarters</p>
+                            <p class="text-[11px] text-white/30 font-bold tracking-widest">+92 3338519369</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="flex gap-8 text-[9px] font-black uppercase tracking-[0.3em] text-white/20">
-                    <p>© 2026 BROTHER CHINA SOURCING</p>
+            <div class="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
+                <div class="flex gap-10 text-[10px] font-black uppercase tracking-[0.4em] text-white/20">
+                    <p>© 2026 BROTHER CHINA SOURCING INFRASTRUCTURE</p>
+                    <a href="#" class="hover:text-white transition-colors">Privacy Protocol</a>
                 </div>
-                <div class="flex items-center gap-2 px-3 py-1 bg-emerald-500/10 rounded-full">
-                    <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
-                    <span class="text-[9px] font-black uppercase tracking-widest text-emerald-500">System Operational</span>
+                <div class="flex items-center gap-3 px-5 py-2 bg-emerald-500/5 border border-emerald-500/20 rounded-full">
+                    <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,1)]"></div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-emerald-500/80">Network Status: Nominal</span>
                 </div>
             </div>
         </div>
@@ -455,28 +684,23 @@
         // Header scroll effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('header');
-            const logoText = document.getElementById('logo-text');
             const logoSubText = document.getElementById('logo-subtext');
-            const menuBtn = document.getElementById('menu-btn');
-            const navLinks = document.querySelectorAll('.nav-link');
             
             if (window.scrollY > 50) {
-                nav.classList.add('bg-brand-navy/95', 'backdrop-blur-md', 'shadow-2xl', 'py-4');
-                nav.classList.remove('bg-transparent', 'py-6');
-                // Keep text visible/stylish on scroll
-                logoText.classList.add('text-white'); 
-                logoSubText.classList.add('text-white/40');
-                menuBtn.classList.add('text-white');
+                nav.classList.add('bg-brand-navy/90', 'backdrop-blur-xl', 'shadow-2xl', 'py-4', 'border-b', 'border-white/5');
+                nav.classList.remove('bg-transparent', 'py-8');
+                if (logoSubText) logoSubText.style.opacity = '1';
             } else {
-                nav.classList.remove('bg-brand-navy/95', 'backdrop-blur-md', 'shadow-2xl', 'py-4');
-                nav.classList.add('bg-transparent', 'py-6');
+                nav.classList.add('bg-transparent', 'py-8');
+                nav.classList.remove('bg-brand-navy/90', 'backdrop-blur-xl', 'shadow-2xl', 'py-4', 'border-b', 'border-white/5');
+                if (logoSubText) logoSubText.style.opacity = '0.2';
             }
         });
 
-        // Toggle Mobile Menu
+        // Mobile Menu Logic
         const menuBtn = document.getElementById('menu-btn');
-        const closeBtn = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
         const toggleMenu = (open) => {
@@ -489,8 +713,8 @@
             }
         };
 
-        menuBtn.addEventListener('click', () => toggleMenu(true));
-        closeBtn.addEventListener('click', () => toggleMenu(false));
+        if (menuBtn) menuBtn.addEventListener('click', () => toggleMenu(true));
+        if (closeBtn) closeBtn.addEventListener('click', () => toggleMenu(false));
         mobileLinks.forEach(link => link.addEventListener('click', () => toggleMenu(false)));
 
     </script>
